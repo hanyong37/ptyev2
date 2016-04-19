@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PytV1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= link_to "帐单管理", '/user_activities' %>
+  <%= link_to "产品管理", '/products' %>
+  <%= link_to "客户管理", '/customers' %>
+  <%= link_to "管理用户", '/admin_users' %>
+  <%= link_to "产品版本", '/versions' %>
+  <%= link_to "产品类别", '/catagories' %>
+
+<%= yield %>
+
+</body>
+</html>

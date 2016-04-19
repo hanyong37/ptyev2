@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @user_activity.customer %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @user_activity.product %>
+</p>
+
+<p>
+  <strong>Item desc:</strong>
+  <%= @user_activity.item_desc %>
+</p>
+
+<p>
+  <strong>Act date:</strong>
+  <%= @user_activity.act_date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @user_activity.amount %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @user_activity.discount %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @user_activity.comments %>
+</p>
+
+<%= link_to 'Edit', edit_user_activity_path(@user_activity) %> |
+<%= link_to 'Back', user_activities_path %>

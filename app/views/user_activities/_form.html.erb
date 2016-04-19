@@ -1,0 +1,47 @@
+<%= form_for(@user_activity) do |f| %>
+  <% if @user_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_activity.errors.count, "error") %> prohibited this user_activity from being saved:</h2>
+
+      <ul>
+      <% @user_activity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <% if @user_activity.discount == nil; @user_activity.discount = 1; end %>
+<div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.collection_select :customer_id, Customer.all,:id,:name , promp: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.collection_select :product_id, Product.all,:id,:name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :item_desc %><br>
+    <%= f.text_field :item_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :act_date %><br>
+    <%= f.date_select :act_date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :discount %><br>
+    <%= f.text_field :discount%>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_field :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

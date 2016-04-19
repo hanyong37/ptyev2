@@ -1,0 +1,12 @@
+class CreateVersions < ActiveRecord::Migration
+  def change
+    create_table :versions do |t|
+      t.datetime :validate_from
+      t.datetime :validate_to
+      t.boolean :isValid
+      t.text :description
+
+      t.timestamps null: false
+    end
+  end
+end

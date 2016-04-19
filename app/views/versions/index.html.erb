@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Versions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>启用时间</th>
+      <th>停用时间</th>
+      <th>Isvalid</th>
+      <th>描述</th>
+      <th>菜单版本状态</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.validate_from %></td>
+        <td><%= version.validate_to %></td>
+        <td><%= version.isValid %></td>
+        <td><%= version.description %></td>
+        <td><%= version.status_name%></td>
+        <td><%= link_to 'Show', version %></td>
+        <td><%= link_to 'Edit', edit_version_path(version) %></td>
+        <td>
+        <!%= link_to 'Destroy', version, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+        <%= link_to 'Publish New Version' ,versions_publish_path, data: { confirm: '请确认发布新版本菜单！' } %>
+<!%= link_to 'New Version', new_version_path %>

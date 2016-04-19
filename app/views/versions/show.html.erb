@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Validate from:</strong>
+  <%= @version.validate_from %>
+</p>
+
+<p>
+  <strong>Validate to:</strong>
+  <%= @version.validate_to %>
+</p>
+
+<p>
+  <strong>Isvalid:</strong>
+  <%= @version.isValid %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @version.description %>
+</p>
+
+<%= link_to 'Edit', edit_version_path(@version) %> |
+<%= link_to 'Back', versions_path %>
