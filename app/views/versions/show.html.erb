@@ -1,24 +1,63 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <strong>菜单ID:</strong>
+  <%= @version.id %>
+</p>
+<p>
+  <strong>当前状态:</strong>
+  <%= @version.status_name %>
+</p>
 
 <p>
-  <strong>Validate from:</strong>
+  <strong>启用时间：</strong>
   <%= @version.validate_from %>
 </p>
 
 <p>
-  <strong>Validate to:</strong>
+  <strong>停用时间:</strong>
   <%= @version.validate_to %>
 </p>
 
 <p>
-  <strong>Isvalid:</strong>
-  <%= @version.isValid %>
+  <strong>发布人:</strong>
+  <%= @version.id %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>版本描述:</strong>
   <%= @version.description %>
 </p>
 
-<%= link_to 'Edit', edit_version_path(@version) %> |
+
+<table>
+  <thead>
+    <tr>
+      <th>产品名</th>
+      <th>价格</th>
+      <th>描述</th>
+      <th>分类</th>
+      <th>单位</th>
+      <th>版本</th>
+      <th>New？</th>
+      <th>Hot？</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.description %></td>
+        <td><%= product.catagory.name %></td>
+        <td><%= product.unit %></td>
+        <td><%= product.version.id %></td>
+        <td><%= product.isNew %></td>
+        <td><%= product.isHot %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <%= link_to 'Back', versions_path %>

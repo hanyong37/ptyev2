@@ -11,23 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :validate_from %><br>
-    <%= f.text_field :validate_from %>
-  </div>
-  <div class="field">
-    <%= f.label :validate_to %><br>
-    <%= f.label :validate_to %>
-  </div>
-  <div class="field">
-    <%= f.label :isValid %><br>
-    <%= f.text_field :isValid %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
+  <p>
+  <strong>菜单ID:</strong>
+  <%= @version.id %>
+</p>
+<p>
+  <strong>当前状态:</strong>
+  <%= @version.status_name %>
+</p>
+
+<p>
+  <strong>启用时间：</strong>
+  <%= @version.validate_from %>
+</p>
+
+<p>
+  <strong>停用时间:</strong>
+  <%= @version.validate_to %>
+</p>
+
+<p>
+  <strong>发布人:</strong>
+  <%= @version.id %>
+</p>
+
+<p>
+  <strong>版本描述:</strong>
+</p>
     <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+<p>
+     <%= f.submit %>
+</p>
 <% end %>

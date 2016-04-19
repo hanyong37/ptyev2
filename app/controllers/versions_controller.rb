@@ -10,6 +10,7 @@ class VersionsController < ApplicationController
   # GET /versions/1
   # GET /versions/1.json
   def show
+    @products = @version.products
   end
 
   # GET /versions/new
@@ -19,6 +20,7 @@ class VersionsController < ApplicationController
 
   # GET /versions/1/edit
   def edit
+    @products = @version.products
   end
 
   # POST /versions

@@ -3,6 +3,18 @@ class Version < ActiveRecord::Base
   accepts_nested_attributes_for :products
 
 
+  def self.draft_version
+    Version.where(status:0).first
+  end
+
+  def self.current_version
+    Version.where(status:1).first
+  end
+
+  def self.archived_versions
+      Version.where(status:2)
+  end
+
   def self.publish
     #1.version status 1 change to 2, (current to archived)
     #2. status 0 to 1, (draft to current)
