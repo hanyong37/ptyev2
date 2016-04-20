@@ -20,7 +20,6 @@ class VersionsController < ApplicationController
 
   # GET /versions/1/edit
   def edit
-    @products = @version.products
   end
 
   # POST /versions
@@ -44,7 +43,7 @@ class VersionsController < ApplicationController
   def update
     respond_to do |format|
       if @version.update(version_params)
-        format.html { redirect_to @version, notice: 'Version was successfully updated.' }
+        format.html { redirect_to edit_version_path(@version.id), notice: 'Version was successfully updated.' }
         format.json { render :show, status: :ok, location: @version }
       else
         format.html { render :edit }

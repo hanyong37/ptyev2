@@ -27,37 +27,6 @@
   <strong>版本描述:</strong>
   <%= @version.description %>
 </p>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>产品名</th>
-      <th>价格</th>
-      <th>描述</th>
-      <th>分类</th>
-      <th>单位</th>
-      <th>版本</th>
-      <th>New？</th>
-      <th>Hot？</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= product.catagory.name %></td>
-        <td><%= product.unit %></td>
-        <td><%= product.version.id %></td>
-        <td><%= product.isNew %></td>
-        <td><%= product.isHot %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render 'subform'%>
 
 <%= link_to 'Back', versions_path %>

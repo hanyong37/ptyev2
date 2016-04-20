@@ -55,7 +55,8 @@ ActiveRecord::Schema.define(version: 20160418145229) do
     t.string   "unit"
     t.integer  "version_id"
     t.boolean  "isNew",           default: false
-    t.boolean  "isHot"
+    t.boolean  "isHot"            default: false
+
   end
 
   add_index "products", ["catagory_id"], name: "index_products_on_catagory_id"

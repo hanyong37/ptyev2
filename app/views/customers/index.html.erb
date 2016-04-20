@@ -20,9 +20,10 @@
         <td><%= customer.nick_name %></td>
         <td><%= customer.weixin_id %></td>
         <td><%= customer.description %></td>
-        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Show Report', customer %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
         <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'New Activity', new_user_activity_path(customer.id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

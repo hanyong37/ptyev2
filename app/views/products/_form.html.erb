@@ -32,17 +32,19 @@
     <%= f.text_field :unit%>
   </div>
   <div class="field">
-    <%= f.label :version_id %><br>
-    <%= f.collection_select :version_id, Version.all, :id, :id%>
+    <%= f.hidden_field :version_id%>
+
   </div>
 
   <div class="field">
-    <%= f.label :isNew %><br>
-    <%= f.text_field :isNew %>
+    <%= f.label :isNew %>
+    <%= f.radio_button:isNew, 'true'%><label>yes</label>
+    <%= f.radio_button:isNew, 'false' %><label>no</label>
   </div>
   <div class="field">
-    <%= f.label :isHot %><br>
-    <%= f.text_field :isHot%>
+    <%= f.label :isHot %>
+    <%= f.radio_button:isHot, 'true'%><label>yes</label>
+    <%= f.radio_button:isHot, 'false' %><label>no</label>
   </div>
   <div class="actions">
     <%= f.submit %>

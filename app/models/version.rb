@@ -43,13 +43,13 @@ class Version < ActiveRecord::Base
   def status_name
     case self.status
         when 0
-          "draft version"
+          "下一个版本"
         when 1
-          "current version"
+          "当前版本"
         when 2
-          "old version"
+          "历史版本"
         else
-          "wrong version"
+          "错误的版本"
     end
   end
 end
