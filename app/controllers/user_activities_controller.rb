@@ -69,6 +69,6 @@ class UserActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_activity_params
-      params.require(:user_activity).permit(:customer_id, :product_id, :item_desc, :act_date, :amount, :discount, :comments)
+      params.require(:user_activity).permit(:customer_id, :product_id, :item_desc, :act_date, :amount, :discount, :comments, :act_type)
     end
 end

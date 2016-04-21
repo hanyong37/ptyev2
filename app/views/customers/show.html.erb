@@ -1,70 +1,49 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>名字:</strong>
   <%= @customer.name %>
 </p>
 
 <p>
-  <strong>Nick name:</strong>
+  <strong>昵称:</strong>
   <%= @customer.nick_name %>
 </p>
 
 <p>
-  <strong>Weixin:</strong>
-  <%= @customer.weixin_id %>
+  <strong>手机号:</strong>
+  <%= @customer.mobile_number %>
+</p>
+<p>
+  <strong>是否会员:</strong>
+  <%= @customer.is_member %>
+</p>
+<p>
+  <strong>创建日期:</strong>
+  <%= @customer.created_at %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>备注:</strong>
   <%= @customer.description %>
 </p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to '编辑', edit_customer_path(@customer) %> |
+<%= link_to '返回列表', customers_path %>
 
 <p id="notice"><%= notice %></p>
 
-<h3>Listing User Activities</h3>
+<h3>活动记录列表</h3>
 
 
-<% if @customer.user_activities == nil %>
+<% if @customer.user_activities.empty? %>
 还没有消费记录
 <%else %>
-<table>
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Product</th>
-      <th>Item desc</th>
-      <th>Act date</th>
-      <th>Amount</th>
-      <th>Discount</th>
-      <th>Comments</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @customer.user_activities.each do |user_activity|  %>
-      <tr>
-        <td><%= user_activity.customer.name %></td>
-        <td><%= user_activity.product.name %></td>
-        <td><%= user_activity.item_desc %></td>
-        <td><%= user_activity.act_date %></td>
-        <td><%= user_activity.amount %></td>
-        <td><%= user_activity.discount %></td>
-        <td><%= user_activity.comments %></td>
-        <td><%= link_to 'Show', user_activity %></td>
-        <td><%= link_to 'Edit', edit_user_activity_path(user_activity) %></td>
-        <td><%= link_to 'Destroy', user_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-   <% end%>
-  </tbody>
-</table>
+<%  user_activities = @customer.user_activities %>
+<%= render "act_list" %>
 
+<%end%>
 <br>
 
 <%= link_to 'New User activity', new_user_activity_path %>
-

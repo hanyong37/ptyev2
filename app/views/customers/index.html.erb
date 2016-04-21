@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Customers</h1>
+<h1>会员列表</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Nick name</th>
-      <th>Weixin</th>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th>姓名</th>
+      <th>昵称</th>
+      <th>手机号</th>
+      <th>微信号</th>
+      <th>是否会员</th>
+      <th colspan="4">操作</th>
     </tr>
   </thead>
 
@@ -18,12 +19,13 @@
       <tr>
         <td><%= customer.name %></td>
         <td><%= customer.nick_name %></td>
-        <td><%= customer.weixin_id %></td>
-        <td><%= customer.description %></td>
-        <td><%= link_to '会员活动报告', customer %></td>
+        <td><%= customer.mobile_number%></td>
+        <td><%= customer.weixin_id%></td>
+        <td><%= customer.is_member%></td>
+        <td><%= link_to '活动报告', customer %></td>
         <td><%= link_to '编辑', edit_customer_path(customer) %></td>
-        <td><%= link_to '删除客户', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to '新增会员活动', new_user_activity_path(customer.id), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '新增活动', new_user_activity_path(customer.id), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '删除客户', customer, method: :delete, data: { confirm: 'Are you sure?' } if customer.user_activities.empty? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Customer', new_customer_path %>
+<%= link_to '新增客户', new_customer_path %>

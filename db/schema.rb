@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418145229) do
+ActiveRecord::Schema.define(version: 20160421185827) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20160418145229) do
     t.string   "nick_name"
     t.string   "weixin_id"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "mobile_number"
+    t.boolean  "is_member"
   end
 
   create_table "prodoct_catagories", force: :cascade do |t|
@@ -55,8 +57,7 @@ ActiveRecord::Schema.define(version: 20160418145229) do
     t.string   "unit"
     t.integer  "version_id"
     t.boolean  "isNew",           default: false
-    t.boolean  "isHot"            default: false
-
+    t.boolean  "isHot"
   end
 
   add_index "products", ["catagory_id"], name: "index_products_on_catagory_id"
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160418145229) do
     t.string   "comments"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "act_typ"
   end
 
   add_index "user_activities", ["customer_id"], name: "index_user_activities_on_customer_id"

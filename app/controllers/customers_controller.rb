@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to customers_path, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class CustomersController < ApplicationController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
-    if @customer.user_activities == nil
+    if @customer.user_activities.empty?
       @customer.destroy
       respond_to do |format|
         format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
@@ -76,6 +76,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :nick_name, :weixin_id, :description)
+      params.require(:customer).permit(:name, :nick_name, :weixin_id, :description, :mobile_number, :is_member)
     end
 end
