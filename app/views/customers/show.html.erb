@@ -40,7 +40,7 @@
 还没有消费记录
 <%else %>
 
-<%  user_activities = @customer.user_activities %>
+<%  user_activities = @customer.user_activities.order('act_type') %>
 <%= render "act_list" %>
 
 <%end%>

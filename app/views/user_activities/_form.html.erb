@@ -10,38 +10,61 @@
       </ul>
     </div>
   <% end %>
-    <% if @user_activity.discount == nil; @user_activity.discount = 1; end %>
+    <%  @user_activity.discount = 1 if @user_activity.discount == nil %>
+
+     <div class="field">
+    <%= f.hidden_field :customer_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :act_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label "活动类型" %><br>
+    <%= f.text_field :type_name, readonly:true %>
+  </div>
+  <%# 充值 %>
+  <% if @user_activity.act_type == 0 %>
+
 <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.collection_select :customer_id, Customer.all,:id,:name , promp: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :product_id %><br>
-    <%= f.collection_select :product_id, Product.all,:id,:name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :item_desc %><br>
-    <%= f.text_field :item_desc %>
-  </div>
-  <div class="field">
-    <%= f.label :act_date %><br>
-    <%= f.date_select :act_date %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br>
+    <%= f.label "金额" %><br>
     <%= f.text_field :amount %>
   </div>
+
+
+
+  <%# 消费%>
+    <% elsif @user_activity.act_type == 1 ||  @user_activity.act_type ==2 %>
+<div class="field">
+    <%= f.label "相关产品" %><br>
+    <%= f.collection_select :product_id, Product.current_list,:id,:name %>
+  </div>
+
   <div class="field">
-    <%= f.label :discount %><br>
+    <%= f.label "数量"%><br>
+    <%= f.text_field :count %>
+  </div>
+<div class="field">
+    <%= f.label "金额" %><br>
+    <%= f.text_field :amount %>
+  </div>
+ <div class="field">
+    <%= f.label "折扣"%><br>
     <%= f.text_field :discount%>
   </div>
-  <div class="field">
-    <%= f.label :comments %><br>
+<% end %>
+
+<div class="field">
+    <%= f.label "备注" %><br>
     <%= f.text_field :comments %>
   </div>
-  <div class="actions">
+
+    <div class="field">
+    <%= f.label "日期" %><br>
+    <%= f.date_select :act_date %>
+  </div>
+      <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

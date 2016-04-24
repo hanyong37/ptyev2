@@ -4,7 +4,7 @@ class Version < ActiveRecord::Base
 
 
   def self.draft_version
-    Version.where(status:0).first
+    Version.where(status:0)
   end
 
   def self.current_version

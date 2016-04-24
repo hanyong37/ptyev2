@@ -29,8 +29,7 @@
   </div>
   <div class="field">
     <%= f.label "是否会员" %><br>
-    <%= f.radio_button:is_member , 'true'%><label>true</label>
-    <%= f.radio_button:is_member , 'false' %><label>false</label>
+    <%= f.text_field :is_member,readonly:true%>
   </div>
   <div class="field">
     <%= f.label "备注" %><br>

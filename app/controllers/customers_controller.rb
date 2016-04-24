@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy,:new_user_activity]
 
   # GET /customers
   # GET /customers.json
@@ -42,7 +42,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to customers_url, notice: 'Customer was successfully updated.' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -67,6 +67,7 @@ class CustomersController < ApplicationController
       end
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

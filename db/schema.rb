@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421185827) do
+ActiveRecord::Schema.define(version: 20160423155430) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -73,7 +73,8 @@ ActiveRecord::Schema.define(version: 20160421185827) do
     t.string   "comments"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "act_typ"
+    t.integer  "act_type"
+    t.integer  "count"
   end
 
   add_index "user_activities", ["customer_id"], name: "index_user_activities_on_customer_id"

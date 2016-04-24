@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p stype="color:red" id="notice"><%= notice %></p>
 
 <h1>会员列表</h1>
 
@@ -23,14 +23,23 @@
         <td><%= customer.weixin_id%></td>
         <td><%= customer.is_member%></td>
         <td><%= link_to '活动报告', customer %></td>
-        <td><%= link_to '编辑', edit_customer_path(customer) %></td>
-        <td><%= link_to '新增活动', new_user_activity_path(customer.id), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '编辑客户', edit_customer_path(customer) %></td>
+
+        <% if customer.is_member %>
+
+        <td><%= link_to '充值', new_user_activity_path(customer_id: customer.id,act_type:0) %></td>
+
+        <td><%= link_to '会员消费', new_user_activity_path(customer_id: customer.id,act_type:1 )%></td>
+        <% else %>
+        <td><%= link_to '充值', new_user_activity_path(customer_id: customer.id,act_type:0) %></td>
+
+        <td><%= link_to '零点消费', new_user_activity_path(customer_id: customer.id,act_type:2 )%></td>
         <td><%= link_to '删除客户', customer, method: :delete, data: { confirm: 'Are you sure?' } if customer.user_activities.empty? %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to '新增客户', new_customer_path %>

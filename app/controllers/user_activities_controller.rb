@@ -15,6 +15,9 @@ class UserActivitiesController < ApplicationController
   # GET /user_activities/new
   def new
     @user_activity = UserActivity.new
+    @user_activity.act_type ||= params[:act_type]
+    @user_activity.customer_id ||= params[:customer_id]
+
   end
 
   # GET /user_activities/1/edit
@@ -25,6 +28,24 @@ class UserActivitiesController < ApplicationController
   # POST /user_activities.json
   def create
     @user_activity = UserActivity.new(user_activity_params)
+    case @user_activity.act_type
+    when 0
+      #充值后即可成为会员
+      @user_activity.item_desc= "充值"+@user_activity.amount.truncate(2).to_s('F')
+      @user_activity.customer.is_member = true
+      @user_activity.customer.save
+    when 1
+      #会员消费，自动产生产品描述，自动计算消费金额
+      @user_activity.amount = @user_activity.product.price * @user_activity.count * @user_activity.discount
+      @user_activity.item_desc = "会员消费："+@user_activity.product.name+"("+@user_activity.count.to_s+@user_activity.product.unit.to_s+")"+";总金额："+@user_activity.amount.truncate(2).to_s('F')
+
+    when 2
+       @user_activity.amount = @user_activity.product.price * @user_activity.count * @user_activity.discount
+
+      #calculate_amount(@user_activity)
+      @user_activity.item_desc = "零点消费："+@user_activity.product.name+"("+@user_activity.count.to_s+@user_activity.product.unit.to_s+")"+";总金额："+@user_activity.amount.truncate(2).to_s('F')
+
+    end
 
     respond_to do |format|
       if @user_activity.save
@@ -62,6 +83,9 @@ class UserActivitiesController < ApplicationController
   end
 
   private
+    def calculate_amount(ua)
+      ua.amount = ua.product.price * ua.count * ua.discount
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user_activity
       @user_activity = UserActivity.find(params[:id])
@@ -69,6 +93,6 @@ class UserActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_activity_params
-      params.require(:user_activity).permit(:customer_id, :product_id, :item_desc, :act_date, :amount, :discount, :comments, :act_type)
+      params.require(:user_activity).permit(:customer_id, :product_id, :item_desc, :act_date, :amount, :discount, :comments,:count, :act_type)
     end
 end
