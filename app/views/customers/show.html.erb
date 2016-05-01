@@ -27,11 +27,14 @@
   <strong>备注:</strong>
   <%= @customer.description %>
 </p>
+<p>
+  <strong>目前余额:</strong>
+  <%= @customer.balance.to_s('F') %>
+</p>
 
-<%= link_to '编辑', edit_customer_path(@customer) %> |
-<%= link_to '返回列表', customers_path %>
+<%= link_to '编辑会员信息', edit_customer_path(@customer) %> |
+<%= link_to '返回会员列表', customers_path %>
 
-<p id="notice"><%= notice %></p>
 
 <h3>活动记录列表</h3>
 
@@ -46,4 +49,6 @@
 <%end%>
 <br>
 
-<%= link_to 'New User activity', new_user_activity_path %>
+<%= link_to '充值', new_user_activity_path(act_type: 0,customer_id: @customer.id) %>
+<%= link_to '会员消费', new_user_activity_path(act_type: 1,customer_id: @customer.id) if @customer.is_member %>
+<%= link_to '非会员消费', new_user_activity_path(act_type: 2,customer_id: @customer.id) if !@customer.is_member %>

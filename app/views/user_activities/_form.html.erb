@@ -32,7 +32,9 @@
     <%= f.text_field :amount %>
   </div>
 
-
+  <div class="field">
+    <%= f.hidden_field :count %>
+  </div>
 
   <%# 消费%>
     <% elsif @user_activity.act_type == 1 ||  @user_activity.act_type ==2 %>
@@ -45,15 +47,12 @@
     <%= f.label "数量"%><br>
     <%= f.text_field :count %>
   </div>
-<div class="field">
-    <%= f.label "金额" %><br>
-    <%= f.text_field :amount %>
-  </div>
+<% end %>
+
  <div class="field">
     <%= f.label "折扣"%><br>
     <%= f.text_field :discount%>
   </div>
-<% end %>
 
 <div class="field">
     <%= f.label "备注" %><br>

@@ -31,7 +31,7 @@
   </tbody>
 </table>
 <p>
-<%= link_to '新建产品', new_product_path  %>
+<%= link_to '新建产品', new_product_path if @version.status ==0 %>
 </p>
 
 

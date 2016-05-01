@@ -27,10 +27,13 @@
     <%= f.label "手机号" %><br>
     <%= f.text_field :mobile_number %>
   </div>
+  <% if @customer.id != nil %>
   <div class="field">
     <%= f.label "是否会员" %><br>
     <%= f.text_field :is_member,readonly:true%>
   </div>
+  <% end %>
+
   <div class="field">
     <%= f.label "备注" %><br>
     <%= f.text_field  :description %>

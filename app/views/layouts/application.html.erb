@@ -1,19 +1,55 @@
+<!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PytV1</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+  </head>
+  <body>
+ <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">社会主义最民主</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">首页</a></li>
+              <li><a href="#about">关于</a></li>
+              <li><a href="#contact">联系</a></li>
+            </ul>
+            <p class="navbar-text pull-right">我代表<a href="#">人名</a></p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-  <%= link_to "菜单管理", '/versions' %>
-  <%= link_to "客户管理", '/customers' %>
-  <%= link_to "帐单管理", '/user_activities' %>
-  <%= link_to "产品类别", '/catagories' %>
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-3">
+          <h3>欢迎来到葡萄院儿！<small>这里是后台管理系统</small></h3>
+        </div>
+        <div class="col-xs-9">
+          <ul class="breadcrumb">
+            <li>
+              <%= link_to "客户管理", '/customers' %>
+              <span class="divider">/</span>
+            </li>
+            <li>
+              <%= link_to "菜单管理", '/versions' %>
+              <span class="divider">/</span>
+            </li>
+            <li >
+              <%= link_to "产品类别", '/catagories' %>
+            </li>
+          </ul>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>
+
