@@ -3,11 +3,11 @@
     <tr>
       <th>日期</th>
       <th>活动描述</th>
-      <th>相关产品</th>
-      <th>产品数量</th>
-      <th>产品单价</th>
-      <th>备注</th>
-      <th colspan="2">操作</th>
+      <th class="hidden-xs">相关产品</th>
+      <th class="hidden-xs">产品数量</th>
+      <th class="hidden-xs">产品单价</th>
+      <th class="hidden-xs">备注</th>
+      <th colspan="2">金额</th>
     </tr>
   </thead>
 
@@ -15,13 +15,12 @@
     <% @customer.user_activities.each do |user_activity|  %>
       <tr>
         <td><%= user_activity.act_date %></td>
-        <td><%= user_activity.item_desc %></td>
-        <td><%= user_activity.product.name if user_activity.act_type != 0 %></td>
-        <td><%= user_activity.count if user_activity.act_type != 0  %></td>
-        <td><%= user_activity.product.price if user_activity.act_type != 0  %></td>
-        <td><%= user_activity.comments %></td>
-        <td><%= link_to '编辑', edit_user_activity_path(user_activity), class:"btn btn-warning btn-sm" %></td>
-        <td><%= link_to '删除', user_activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></td>
+        <td> <%=user_activity.item_desc%><%= link_to edit_user_activity_path(user_activity) do%> <i class="glyphicon glyphicon-edit"></i><% end %></td>
+        <td class="hidden-xs"><%= user_activity.product.name if user_activity.act_type != 0 %></td>
+        <td class="hidden-xs"><%= user_activity.count if user_activity.act_type != 0  %></td>
+        <td class="hidden-xs"><%= user_activity.product.price if user_activity.act_type != 0  %></td>
+        <td class="hidden-xs"><%= user_activity.comments %></td>
+        <td ><%= '-' if user_activity.type_name != '充值'%><%= user_activity.amount%></td>
       </tr>
    <% end%>
   </tbody>

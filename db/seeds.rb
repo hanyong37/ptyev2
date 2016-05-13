@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-catagories = Catagory.create([{name: '饮料'},{name: '酒类'},{name: '活动'},{name: '零食'}])
-Product.create(name: '咖啡', catagory: catagories.first(), version_id: Version.create(description: 'seed version',  status: 0).id)
+catagories = Catagory.create([{name: '饮品'},{name: '酒类'},{name: '活动'},{name: '零食'}])
+Product.create(name: '咖啡', catagory: catagories.first(), version_id: Version.create(description: 'version',  status: 0).id)
 

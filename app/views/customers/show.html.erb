@@ -1,53 +1,65 @@
-
-<p>
-  <strong>名字:</strong>
-  <%= @customer.name %>
-</p>
-
-<p>
-  <strong>昵称:</strong>
-  <%= @customer.nick_name %>
-</p>
-
-<p>
-  <strong>手机号:</strong>
-  <%= @customer.mobile_number %>
-</p>
-<p>
-  <strong>是否会员:</strong>
-  <%= @customer.is_member %>
-</p>
-<p>
-  <strong>创建日期:</strong>
-  <%= @customer.created_at %>
-</p>
-
-<p>
-  <strong>备注:</strong>
-  <%= @customer.description %>
-</p>
-<p>
-  <strong>目前余额:</strong>
-  <%= @customer.balance.to_s('F') %>
-</p>
-
-<%= link_to '编辑会员信息', edit_customer_path(@customer)  ,class: 'btn btn-info btn-sm'%> |
-<%= link_to '返回会员列表', customers_path , class: 'btn btn-info btn-sm' %>
+<div class="row">
+  <div class="col-xs-6">
+    <p>
+    <strong>名字:</strong>
+    <%= @customer.name %>
+    </p><p>
+    <strong>昵称:</strong>
+    <%= @customer.nick_name %>
+    </p><p>
+    <strong>手机号:</strong>
+    <%= @customer.mobile_number %>
+    </p>
+    <p>
+    <strong>微信号:</strong>
+    <%= @customer.weixin_id%>
+    </p>
 
 
-<h3>活动记录列表</h3>
+  </div>
+  <div class="col-xs-6">
+
+    <p>
+    <strong>是否会员:</strong>
+    <%= @customer.is_member %>
+    </p>
+    <p>
+    <strong>加入日期:</strong>
+    <%= @customer.created_at.localtime.strftime("%Y/%m/%d") %>
+    </p>
+
+    <p>
+    <strong>备注:</strong>
+    <%= @customer.description %>
+    </p>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to '编辑会员', edit_customer_path(@customer) %> |
+      <%= link_to '返回会员列表', customers_path %>
+
+    </div>
+  </div>
+
+  <h3 class="text-center">消费记录</h3>
 
 
-<% if @customer.user_activities.empty? %>
-还没有消费记录
-<%else %>
+  <% if @customer.user_activities.empty? %>
+    还没有消费记录
+  <%else %>
 
-<%  user_activities = @customer.user_activities.order('act_type') %>
-<%= render "act_list" %>
+    <%  user_activities = @customer.user_activities.order('act_type') %>
+    <%= render "act_list" %>
 
-<%end%>
-<br>
-
-<%= link_to '充值', new_user_activity_path(act_type: 0,customer_id: @customer.id), class: 'btn btn-info btn-sm' %>
-<%= link_to '会员消费', new_user_activity_path(act_type: 1,customer_id: @customer.id), class: 'btn btn-info btn-sm' if @customer.is_member %>
-<%= link_to '非会员消费', new_user_activity_path(act_type: 2,customer_id: @customer.id), class: 'btn btn-info btn-sm' if !@customer.is_member %>
+    <p class="text-right">
+    <strong>当前余额:</strong>
+    <%= @customer.balance.to_s('F')   %>
+    </p>
+  <%end%>
+  <br>
+  <%= link_to '充值', new_user_activity_path(act_type: 0,customer_id: @customer.id), class: 'btn btn-info btn-sm' %>
+  <%= link_to '会员消费', new_user_activity_path(act_type: 1,customer_id: @customer.id), class: 'btn btn-info btn-sm' if @customer.is_member %>
+  <%= link_to '非会员消费', new_user_activity_path(act_type: 2,customer_id: @customer.id), class: 'btn btn-info btn-sm' if !@customer.is_member %>
+<%= link_to '打印客户报告',report_customer_path(@customer) , :target => "_blank"  %>

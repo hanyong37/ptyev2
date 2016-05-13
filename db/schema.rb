@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20160423155430) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "catagory_id_old"
     t.string   "name"
     t.decimal  "price"
     t.text     "description"
@@ -60,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160423155430) do
     t.string   "unit"
     t.integer  "version_id"
     t.boolean  "isNew",           default: false
-    t.boolean  "isHot"
+    t.boolean  "isHot", default: false
   end
 
   add_index "products", ["catagory_id"], name: "index_products_on_catagory_id", using: :btree

@@ -1,4 +1,6 @@
 <h1>Editing User Activity</h1>
 
 <%= render 'form' %>
+        <%= link_to '删除此条', @user_activity, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', customer_path(@user_activity.customer.id) %>
 

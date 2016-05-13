@@ -28,7 +28,7 @@ class CatagoriesController < ApplicationController
 
     respond_to do |format|
       if @catagory.save
-        format.html { redirect_to @catagory, notice: 'Catagory was successfully created.' }
+        format.html { redirect_to catagories_url, notice: 'Catagory was successfully created.' }
         format.json { render :show, status: :created, location: @catagory }
       else
         format.html { render :new }

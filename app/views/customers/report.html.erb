@@ -1,0 +1,49 @@
+<div class="row" style="width: 600px;">
+  <div class="col-xs-12">
+
+    <pre style="background-color:#fff; border:0; color: green; font-size: 20px;" >
+
+      在一起，消磨最美好的时光。
+      感谢光临葡萄院儿  the Vineyard！
+      如有疑问，请拨打18181993242.
+   </pre>
+
+  </div>
+
+  <h3 class="text-center"><%= @customer.name %>的消费明细</h3>
+
+
+  <% if @customer.user_activities.empty? %>
+    还没有消费记录
+  <%else %>
+
+    <%  user_activities = @customer.user_activities.order('act_type') %>
+    <table class="table table-responsive table-condensed" >
+      <thead align="center">
+        <tr>
+          <th>日期</th>
+          <th>活动描述</th>
+          <th >金额</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @customer.user_activities.each do |user_activity|  %>
+          <tr>
+            <td><%= user_activity.act_date %></td>
+            <td> <%=user_activity.item_desc%></td>
+            <td ><%= '-' if user_activity.type_name != '充值'%><%= user_activity.amount%></td>
+          </tr>
+        <% end%>
+        <tr>
+          <td colspan='3' align='right' stlye='padding-right: 10px;'>
+            <h5><strong>当前余额:</strong>
+              <%= @customer.balance.to_s('F')   %></h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  <%end%>
+  <br>
+

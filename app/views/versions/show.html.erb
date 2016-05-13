@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
+
+
+ <div class="row">
+    <div class="col-xs-6">
 <p>
   <strong>菜单ID:</strong>
   <%= @version.id %>
@@ -9,24 +13,29 @@
 </p>
 
 <p>
-  <strong>启用时间：</strong>
-  <%= @version.validate_from %>
+  <strong>版本描述:</strong>
+  <%= @version.description %>
+</p>
+
+    </div>
+     <div class="col-xs-6">
+<p>
+  <strong>启用时间:</strong>
+  <%= @version.validate_from.localtime.strftime('%y/%m/%d %H:%m')  if @version.validate_from!=nil %>
 </p>
 
 <p>
   <strong>停用时间:</strong>
-  <%= @version.validate_to %>
+  <%= @version.validate_to.localtime.strftime('%y/%m/%d %H:%m') if @version.validate_to!=nil  %>
 </p>
 
-<p>
-  <strong>发布人:</strong>
-  <%= @version.id %>
-</p>
 
-<p>
-  <strong>版本描述:</strong>
-  <%= @version.description %>
-</p>
+    </div>
+
+  </div>
+
+
 <%= render 'subform'%>
 
-<%= link_to 'Back', versions_path %>
+<%= link_to '返回', versions_path %>
+<%= link_to '打印页面', versions_path %>

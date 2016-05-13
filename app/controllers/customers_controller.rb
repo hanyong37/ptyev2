@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy,:new_user_activity]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy,:new_user_activity, :report]
+  layout "printable" ,only:[:report]
 
   # GET /customers
   # GET /customers.json
@@ -10,6 +11,10 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+  end
+
+  # GET /customers/1/report
+  def report
   end
 
   # GET /customers/new

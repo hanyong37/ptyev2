@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :catagories
   resources :user_activities
   resources :admin_users
-  resources :customers
+  resources :customers do
+    get 'report' , on: :member
+  end
   resources :products
 
   get '/home' => 'product#view'
