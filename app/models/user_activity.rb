@@ -17,7 +17,7 @@ class UserActivity < ActiveRecord::Base
         when 1
           "会员消费"
         when 2
-          "非会员消费"
+          "现金消费"
         else
           "错误的类型"
     end
@@ -55,6 +55,7 @@ private
 
  def calculate_amount
       self.amount = self.product.price * self.count * self.discount
+      p self.amount
     end
 
 end
