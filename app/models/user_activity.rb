@@ -1,5 +1,5 @@
 class UserActivity < ActiveRecord::Base
-  default_scope {order(:created_at)}
+  default_scope {order('act_date DESC')}
 
   validates :count,presence: true, numericality: {only_integer: true}
   validates :discount, numericality: {less_than_or_equal_to: 1, greater_than: 0}

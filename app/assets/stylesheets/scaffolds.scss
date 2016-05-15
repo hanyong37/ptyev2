@@ -6,11 +6,16 @@ body {
   line-height: 18px;
 }
 
+ul li {
+    font-size: 15px;
+    list-style: square;
+  }
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 18px;
 }
+
 
 pre {
   background-color: #eee;
@@ -19,10 +24,10 @@ pre {
 }
 
 a {
-  color: #fff;
+  color: #000;
 
   &:visited {
-    color: #666;
+    color: #000;
   }
 
   &:hover {
@@ -35,7 +40,7 @@ div {
   &.field, &.actions {
     margin: 2px;
   }
-  padding: 0px 10px 10px 10px;
+  //padding: 0px 10px 10px 10px;
 }
 
 #notice {
@@ -67,8 +72,4 @@ div {
     color: #fff;
   }
 
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
 }

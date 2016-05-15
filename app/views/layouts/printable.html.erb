@@ -6,9 +6,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body onload="window.resizeTo('600','800');">
-    <div id="main-container" class="container">
+  <body >
+    <div id="main-container" class="container" style="padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;">
       <div class="row">
         <div class="span12">
                     <%= yield %>

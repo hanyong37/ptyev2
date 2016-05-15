@@ -1,4 +1,4 @@
-<div class="row" style="width: 600px;">
+<div class="row" style="width: 600px; padding: 10,10,10,10;">
   <div class="col-xs-12">
 
     <pre style="background-color:#fff; border:0; color: green; font-size: 20px;" >
@@ -6,44 +6,36 @@
       在一起，消磨最美好的时光。
       感谢光临葡萄院儿  the Vineyard！
       如有疑问，请拨打18181993242.
-   </pre>
+    </pre>
 
   </div>
 
-  <h3 class="text-center"><%= @customer.name %>的消费明细</h3>
-
-
+  <h3 class="text-center"><%= @customer.name %>的帐单</h3>
   <% if @customer.user_activities.empty? %>
     还没有消费记录
   <%else %>
 
-    <%  user_activities = @customer.user_activities.order('act_type') %>
-    <table class="table table-responsive table-condensed" >
-      <thead align="center">
-        <tr>
-          <th>日期</th>
-          <th>活动描述</th>
-          <th >金额</th>
-        </tr>
-      </thead>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div  class="panel panel-default panel-success">
 
-      <tbody>
-        <% @customer.user_activities.each do |user_activity|  %>
-          <tr>
-            <td><%= user_activity.act_date %></td>
-            <td style="font-size:15px"> <%=user_activity.item_desc%></td>
-            <td ><%= '-' if user_activity.type_name != '充值'%><%= user_activity.amount%></td>
-          </tr>
-        <% end%>
-        <tr>
-          <td colspan='3' align='right' stlye='padding-right: 10px;'>
-            <p style="color:green; padding-top:10px ;padding-right:30px"><strong>当前余额:</strong>
-              <%= @customer.balance.to_s('F') %></p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <p style="padding-top:10px ;padding-right:30px" class="text-right"><strong>当前余额:</strong><%= @customer.balance.to_s('F') %></p>
+        <% UserActivity.unscoped.select(:act_date).distinct.where(:customer=>@customer.id).order(act_date: :desc).each_with_index do |ua_list,i|  %>
+          <div class="panel-heading " role="tab" id="heading<%=ua_list.act_date%>">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=ua_list.act_date%>" aria-expanded=<%= i==1? '"true"':'"false"'%> aria-controls="collapse<%=ua_list.act_date%>">
+                <%=ua_list.act_date%>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse<%=ua_list.act_date%>" class="panel-collapse collapse  <%='in' if i==0%>" role="tabpanel" aria-labelledby="heading<%=ua_list.act_date%>">
+            <ul style="margin-bottom:0" class="list-group">
+              <%UserActivity.select(:item_desc,:comments).where(customer:@customer.id,act_date:ua_list.act_date).each do |ua_desc| %>
+                <li class="list-group-item"><%=ua_desc.item_desc%><span class="text-info"><%='  [备注：'+ua_desc.comments+']' if ua_desc.comments != nil %></span></li>
+              <% end %>
+            </ul>
+          </div>
+        <%end%>
+      </div>
+    </div>
 
   <%end%>
-  <br>
-

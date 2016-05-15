@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   has_many :user_activities
-  default_scope {order(:name)}
+  default_scope {order('is_member desc, name')}
 
   validates :name,presence: true
   def balance

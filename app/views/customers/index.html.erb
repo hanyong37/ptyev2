@@ -9,7 +9,7 @@
       <th class="hidden-xs">昵称</th>
       <th>手机号</th>
       <th class="hidden-xs">微信号</th>
-      <th class="hidden-xs">是否会员</th>
+      <th class="hidden-xs">余额</th>
       <th colspan="3">操作</th>
     </tr>
   </thead>
@@ -33,7 +33,7 @@
           <td class="hidden-xs"><%= customer.nick_name %></td>
           <td><%= customer.mobile_number%></td>
           <td class="hidden-xs"><%= customer.weixin_id%></td>
-          <td class="hidden-xs"><%= customer.is_member%></td>
+          <td class="hidden-xs"><%= customer.balance%></td>
 
           <td><%= link_to new_user_activity_path(customer_id: customer.id,act_type:0) , class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-user"></i>充值<% end %></td>
           <td><%= link_to  new_user_activity_path(customer_id: customer.id,act_type:2 ), class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-glass"></i>现金消费<% end %></td>
