@@ -31,14 +31,14 @@
         <% @customer.user_activities.each do |user_activity|  %>
           <tr>
             <td><%= user_activity.act_date %></td>
-            <td> <%=user_activity.item_desc%></td>
+            <td style="font-size:15px"> <%=user_activity.item_desc%></td>
             <td ><%= '-' if user_activity.type_name != '充值'%><%= user_activity.amount%></td>
           </tr>
         <% end%>
         <tr>
           <td colspan='3' align='right' stlye='padding-right: 10px;'>
-            <h5><strong>当前余额:</strong>
-              <%= @customer.balance.to_s('F')   %></h5>
+            <p style="color:green; padding-top:10px ;padding-right:30px"><strong>当前余额:</strong>
+              <%= @customer.balance.to_s('F') %></p>
           </td>
         </tr>
       </tbody>

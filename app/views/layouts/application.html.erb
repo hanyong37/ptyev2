@@ -17,7 +17,7 @@
             <%= content_tag :div, msg, class: "alert alert-#{name}" %>
           <% end -%>
           <nav class="navbar nav-tabs ">
-              <ul class="nav nav-tabs" role="tablist">
+              <ul class="nav nav-pills" role="tablist">
                 <li class=<%= 'active' if current_page?(customers_path) %>>
                   <%= link_to "客户管理", '/customers' %>
                 </li>
