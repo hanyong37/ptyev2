@@ -41,17 +41,25 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
  <%= link_to '编辑会员', edit_customer_path(@customer) , class: 'btn btn-warning btn-sm'   %>
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
     <%= link_to '返回会员列表', customers_path , class: 'btn btn-info btn-sm'  %>
-
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
+<%= link_to '打印客户报告',report_customer_path(@customer) , class: 'btn btn-info btn-sm'  , :target => "_blank"  %>
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
 <%= link_to new_user_activity_path(act_type: 0,customer_id: @customer.id), class: 'btn btn-success btn-sm'  do %> <i class="glyphicon glyphicon-plus"></i> 充值<% end %>
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
 <% if @customer.is_member  %>
   <%= link_to  new_user_activity_path(act_type: 1,customer_id: @customer.id), class: 'btn btn-success btn-sm' do %> <i class="glyphicon glyphicon-plus"></i> 会员消费<% end %>
 <% end%>
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
 <%= link_to  new_user_activity_path(act_type: 2,customer_id: @customer.id), class: 'btn btn-success btn-sm' do %> <i class="glyphicon glyphicon-plus"></i> 非会员消费<% end %>
-<%= link_to '打印客户报告',report_customer_path(@customer) , class: 'btn btn-info btn-sm'  , :target => "_blank"  %>
-
   </div>
 </div>
 
