@@ -18,14 +18,21 @@
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div  class="panel panel-default panel-success">
 
-        <p style="padding-top:10px ;padding-right:30px" class="text-right"><strong>当前余额:</strong><%= @customer.balance.to_s('F') %></p>
+        <p style="padding-top:10px ;padding-right:20px" class="text-right"><strong>当前余额: </strong><%= @customer.balance.to_s('F') %> 元</p>
         <% UserActivity.unscoped.select(:act_date).distinct.where(:customer=>@customer.id).order(act_date: :desc).each_with_index do |ua_list,i|  %>
           <div class="panel-heading " role="tab" id="heading<%=ua_list.act_date%>">
+              <div class="row">
+                <div class="col-md-9">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=ua_list.act_date%>" aria-expanded=<%= i==1? '"true"':'"false"'%> aria-controls="collapse<%=ua_list.act_date%>">
                 <%=ua_list.act_date%>
               </a>
             </h4>
+                </div>
+                <div class="col-md-3">
+                  <span class="text-right ">会员消费: <%= UserActivity.unscoped.where(act_date: ua_list.act_date, customer_id: @customer.id,act_type:1).sum(:amount) %> 元</span>
+                </div>
+                </div>
           </div>
           <div id="collapse<%=ua_list.act_date%>" class="panel-collapse collapse  <%='in' if i==0%>" role="tabpanel" aria-labelledby="heading<%=ua_list.act_date%>">
             <ul style="margin-bottom:0" class="list-group">
