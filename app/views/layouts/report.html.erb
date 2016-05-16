@@ -1,0 +1,24 @@
+<!-- app/views/layouts/report.html.erb -->
+<!DOCTYPE html lang="zh-CN">
+<html>
+  <head>
+    <title> 欢迎来到葡萄院儿管理系统！</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body >
+    <div id="main-container" class="container" style="padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;">
+      <div class="row">
+        <div class="span12">
+                    <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

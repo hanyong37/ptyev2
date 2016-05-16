@@ -1,0 +1,42 @@
+<div class="row" >
+  <div class="col-xs-12" style="padding: 10 10 10 10;">
+
+    <p style="text-align:center; color: green; font-size: 20px;" >
+      老板娘，辛苦了，来看看葡萄院儿的小报告吧：
+    </p>
+      <p style="text-align:right; "> 汇总：充值: <%= UserActivity.unscoped.where( act_type:0).sum(:amount) %> 元； 会员消费: <%= UserActivity.unscoped.where(act_type:1).sum(:amount) %> 元；  现金消费: <%= UserActivity.unscoped.where( act_type:2).sum(:amount) %> 元</p>
+    </div>
+
+  </div>
+
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div  class="panel panel-default panel-success">
+
+        <% UserActivity.unscoped.select(:act_date).distinct.order(act_date: :desc).each_with_index do |d_list,i|  %>
+          <div class="panel-heading " role="tab" id="heading<%=d_list.act_date%>">
+            <div class="row">
+              <div class="col-sm-4">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=d_list.act_date%>" aria-expanded=<%= i==1? '"true"':'"false"'%> aria-controls="collapse<%=d_list.act_date%>">
+                    <%=d_list.act_date%>
+                  </a>
+                </h4>
+              </div>
+              <div class="col-sm-8">
+                <span style="text-align:right;font-size:14">充值: <%= UserActivity.unscoped.where(act_date: d_list.act_date, act_type:0).sum(:amount) %> 元；会员消费: <%= UserActivity.unscoped.where(act_date: d_list.act_date, act_type:1).sum(:amount) %> 元；  现金消费: <%= UserActivity.unscoped.where(act_date: d_list.act_date, act_type:2).sum(:amount) %> 元</span>
+              </div>
+            </div>
+          </div>
+          <div id="collapse<%=d_list.act_date%>" class="panel-collapse collapse  <%='in' if i==0%>" role="tabpanel" aria-labelledby="heading<%=d_list.act_date%>">
+            <ul style="margin-bottom:0" class="list-group">
+              <%UserActivity.where(act_date:d_list.act_date).each do |ua_list| %>
+                <li class="list-group-item"><%=ua_list.customer.name+':'+ua_list.item_desc%></li>
+              <% end %>
+            </ul>
+          </div>
+        <%end%>
+      </div>
+    </div>
+</div>
+
