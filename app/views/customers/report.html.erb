@@ -37,7 +37,7 @@
           <div id="collapse<%=ua_list.act_date%>" class="panel-collapse collapse  <%='in' if i==0%>" role="tabpanel" aria-labelledby="heading<%=ua_list.act_date%>">
             <ul style="margin-bottom:0" class="list-group">
               <%UserActivity.select(:item_desc,:comments).where(customer:@customer.id,act_date:ua_list.act_date).each do |ua_desc| %>
-                <li class="list-group-item"><%=ua_desc.item_desc%><span class="text-info"><%='  [备注：'+ua_desc.comments+']' if ua_desc.comments != nil %></span></li>
+                <li class="list-group-item"><%=ua_desc.item_desc%></li>
               <% end %>
             </ul>
           </div>
