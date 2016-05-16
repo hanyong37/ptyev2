@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/home' => 'product#view'
   get '/user_activities/new/' => 'user_activities#new'
+  get '/reports/ua_report' => 'reports#ua_report'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

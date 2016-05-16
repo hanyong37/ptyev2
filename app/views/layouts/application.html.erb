@@ -28,6 +28,9 @@
                 <li class=<%= 'active' if current_page?(catagories_path) %>>
                   <%= link_to "产品类别", '/catagories' %>
                 </li>
+                <li class=<%= 'active' if current_page?('/reports/ua_report') %>>
+                  <%= link_to "经营报告", '/reports/ua_report' %>
+                </li>
               </ul>
           </nav>
           <%= yield %>
