@@ -6,7 +6,7 @@
     </p>
     <%UserActivity.unscoped.select('to_char(act_date, \'YYYY-mm\') as month_str').distinct.each do |m_list|%>
 
-    <p style="text-align:right; "> <%=m_list.month_str%> 汇总：充值: <%= UserActivity.unscoped.where("act_type = 0 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元； 会员消费: <%= UserActivity.unscoped.where("act_type = 1 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元；  现金消费: <%= UserActivity.unscoped.where("act_type = 2 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元</p>
+    <p style="text-align:right; "> <%=m_list.month_str%> 汇总:充值: <%= UserActivity.unscoped.where("act_type = 0 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元； 会员消费: <%= UserActivity.unscoped.where("act_type = 1 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元；  现金消费: <%= UserActivity.unscoped.where("act_type = 2 AND to_char(act_date, \'YYYY-mm\') = \'#{m_list.month_str}\'").sum(:amount) %> 元</p>
 
 
   <%end%>
