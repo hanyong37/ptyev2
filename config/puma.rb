@@ -1,27 +1,27 @@
-#!/usr/bin/env puma
+# 为什么无法取到环境变量？  ENV['RAILS_ENV'] => nil
+if ENV['RAILS_ENV'] = 'production'
 
-#rails的运行环境
-#environment 'production'
-threads 2, 64
-workers 4
 
-#项目名
-app_name = "ptye_v1"
-#项目路径
-application_path = "/User/chenxi/dev/#{app_name}"
-#这里一定要配置为项目路径下地current
-#directory "#{application_path}/current"
+  app_root = '/var/www/ptyev2'
+  pidfile "#{app_root}/tmp/puma.pid"
+  state_path "#{app_root}/tmp/puma.state"
+  bind "unix://#{app_root}/tmp/puma.sock"
+  activate_control_app "unix://#{app_root}/tmp/pumactl.sock"
+  daemonize true
+  threads 2, 4
+  preload_app!
 
-#下面都是 puma的配置项
-#pidfile "#{application_path}/shared/tmp/pids/puma.pid"
-#state_path "#{application_path}/shared/tmp/sockets/puma.state"
-#stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/puma.stderr.log"
-bind 'unix:///Users/chenxi/dev/ptye_v1/my_app.sock'
-#activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
+  on_worker_boot do
+    ActiveSupport.on_load(:active_record) do
+      ActiveRecord::Base.establish_connection
+    end
+  end
 
-#后台运行
-daemonize true
-on_restart do
-  puts 'On restart...'
+  before_fork do
+    ActiveRecord::Base.connection_pool.disconnect!
+  end
+
+else
+  plugin :tmp_restart
 end
-preload_app!
+

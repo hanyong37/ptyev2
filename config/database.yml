@@ -29,6 +29,6 @@ test:
 
 production:
   <<: *default
-  database: d82ph2jkrmm2ii
-  username: hrsatbawswswiw
-  password: 3MEeXwSHR0IGmnsqkmUyJOmGr5
+  database: ptye_admin
+  username: ptyeadmin
+  password: pyte_asdf8lkj

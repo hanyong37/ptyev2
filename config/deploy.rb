@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -11,8 +11,8 @@ require 'mina/git'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, 'chenxi@123.206.59.89'
-set :deploy_to, '/usr/share/nginx/html/ptye'
-set :repository, 'https://github.com/hanyong37/ptye_v1'
+set :deploy_to, '/var/www/ptyev2'
+set :repository, 'https://github.com/hanyong37/ptyev2'
 set :branch, 'master'
 
 # For system-wide RVM install.
@@ -35,7 +35,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+   invoke :'rvm:use[ruby-2.2.5@ptyev2]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
