@@ -1,5 +1,5 @@
 # 为什么无法取到环境变量？  ENV['RAILS_ENV'] => nil
-if ENV['RAILS_ENV'] == 'production'
+if ENV['RAILS_ENV'] = 'production'
 
 
   app_root = '/var/www/ptyev2'
