@@ -107,6 +107,7 @@ task :deploy => :environment do
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
+      # touch to restart puma:
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
   end
