@@ -35,7 +35,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-   invoke :'rvm:use[ruby-2.2.5@ptyev2]'
+   invoke :'rvm:use[ruby-2.3.1@r5test]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -92,6 +92,8 @@ desc "Deploys the current version to the server."
 task :deploy => :environment do
   to :before_hook do
     # Put things to run locally before ssh
+    queue 'git commit -a -m "auto commit by mina"'
+    queue 'git push'
   end
   deploy do
     # Put things that will set up an empty directory into a fully set-up

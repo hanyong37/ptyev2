@@ -20,16 +20,16 @@
           <nav class="navbar nav-tabs" style="margin-bottom:0">
               <ul class="nav nav-pills " role="tablist">
                 <li class=<%= 'active' if current_page?(customers_path) %>>
-                  <%= link_to "客户管理", '/customers' %>
+                  <%= link_to "客户管理", customers_path %>
                 </li>
                 <li class=<%= 'active' if current_page?(versions_path) %>>
-                  <%= link_to "菜单管理", '/versions' %>
+                  <%= link_to "菜单管理", versions_path %>
                 </li>
                 <li class=<%= 'active' if current_page?(catagories_path) %>>
-                  <%= link_to "产品类别", '/catagories' %>
+                  <%= link_to "产品类别", catagories_path %>
                 </li>
-                <li class=<%= 'active' if current_page?('/reports/ua_report') %>>
-                  <%= link_to "经营报告", '/reports/ua_report' %>
+                <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
+                  <%= link_to "经营报告", reports_ua_report_path %>
                 </li>
               </ul>
           </nav>
