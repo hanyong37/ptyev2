@@ -107,7 +107,8 @@ task :deploy => :environment do
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      # touch to restart puma:
+      # touch to restart puma
+      # TODO：有问题，目录重新link过，所以需要关掉重新来:
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
   end
