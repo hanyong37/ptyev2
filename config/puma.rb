@@ -1,5 +1,5 @@
 # 为什么无法取到环境变量？  ENV['RAILS_ENV'] => nil
-if ENV['RAILS_ENV'] = 'production'
+if ENV['RAILS_ENV'] == 'production'
 
 
   app_root = '/var/www/ptyev2'
@@ -8,7 +8,7 @@ if ENV['RAILS_ENV'] = 'production'
   bind "unix://#{app_root}/tmp/puma.sock"
   activate_control_app "unix://#{app_root}/tmp/pumactl.sock"
   daemonize true
-  threads 2, 4
+  threads 1, 4
   preload_app!
 
   on_worker_boot do

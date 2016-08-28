@@ -12,28 +12,48 @@
   </head>
   <body>
     <div id="main-container" class="container-fluid">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              <a class="navbar-brand" href="<%=root_path%>">
+                🍇 葡萄院儿
+                <!--
+                <img alt="The Vineyard" style="width: 80px; height: 80px;" src="<%=asset_path('ptye_logo.jpg') %>"-->
+      </a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+              <li class=<%= 'active' if current_page?(customers_path) %>>
+                <%= link_to "客户管理", customers_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(versions_path) %>>
+                <%= link_to "菜单管理", versions_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(catagories_path) %>>
+                <%= link_to "产品类别", catagories_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
+                <%= link_to "经营报告", reports_ua_report_path %>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div>
+      </nav>
+
       <div class="row-fluid">
         <div class="span12">
-          <h3 class="text-center">欢迎来到葡萄院儿管理系统！</h3>
           <% flash.each do |name, msg| -%>
             <%= content_tag :div, msg, class: "alert alert-#{name}" %>
           <% end -%>
-          <nav class="navbar nav-tabs" style="margin-bottom:0">
-              <ul class="nav nav-pills " role="tablist">
-                <li class=<%= 'active' if current_page?(customers_path) %>>
-                  <%= link_to "客户管理", customers_path %>
-                </li>
-                <li class=<%= 'active' if current_page?(versions_path) %>>
-                  <%= link_to "菜单管理", versions_path %>
-                </li>
-                <li class=<%= 'active' if current_page?(catagories_path) %>>
-                  <%= link_to "产品类别", catagories_path %>
-                </li>
-                <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
-                  <%= link_to "经营报告", reports_ua_report_path %>
-                </li>
-              </ul>
-          </nav>
           <%= yield %>
         </div>
       </div>
