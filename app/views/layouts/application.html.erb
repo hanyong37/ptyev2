@@ -3,12 +3,12 @@
 <!DOCTYPE html lang="zh-CN">
 <html>
   <head>
-    <title> 葡萄院儿管理系统</title>
+    <title>葡萄院儿管理系统</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   </head>
   <body>
     <div id="main-container" class="container-fluid">
@@ -16,29 +16,29 @@
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-memu" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
               <a class="navbar-brand" href="<%=root_path%>">
-                ☕️ 葡萄院儿
+                🍇   葡萄院儿
                 <!--
                 <img alt="The Vineyard" style="width: 80px; height: 80px;" src="<%=asset_path('ptye_logo.jpg') %>"-->
       </a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div id="nav-memu" class="collapse navbar-collapse" >
             <ul class="nav navbar-nav">
 
-              <li class=<%= 'active' if current_page?(customers_path) %>>
+              <li class=<%= 'active' if request.url.match('customer') %>>
                 <%= link_to "客户管理", customers_path %>
               </li>
-              <li class=<%= 'active' if current_page?(versions_path) %>>
+              <li class=<%= 'active' if request.url.match('version') || request.url.match('product') %>>
                 <%= link_to "菜单管理", versions_path %>
               </li>
-              <li class=<%= 'active' if current_page?(catagories_path) %>>
+              <li class=<%= 'active' if request.url.match('catagor') %>>
                 <%= link_to "产品类别", catagories_path %>
               </li>
               <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
@@ -49,10 +49,10 @@
         </div>
       </nav>
 
-      <div class="row-fluid">
-        <div class="span12">
+      <div id="content-container" class="row-fluid">
+        <div class="container">
           <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+            <%= content_tag :div, msg, class: "text-info alert alert-#{name}" %>
           <% end -%>
           <%= yield %>
         </div>

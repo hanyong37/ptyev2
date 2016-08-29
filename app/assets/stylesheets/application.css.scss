@@ -1,0 +1,23 @@
+// Example using 'United' bootswatch
+
+//Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// First set or import your overrides
+//$textColor: #000;
+
+// Import flatly variables
+@import "bootswatch/flatly/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 70px; }
+
+// And finally bootswatch style itself
+@import "bootswatch/flatly/bootswatch";
+
+// Whatever application styles you have go last
+//@import "scaffolds";
+

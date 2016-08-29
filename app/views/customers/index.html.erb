@@ -1,8 +1,14 @@
-<%= link_to  new_customer_path, class: 'btn btn-success btn-block' do %>
-  <i class="glyphicon glyphicon-plus"></i> 新增客户
-<% end %>
+<div class="row">
+  <div class="panel panel-default">
+  <div class="panel-body">
+    <span class="text-default">会员余额总计：<%=getTotalBalance%> </span>
+      <span class="pull-right"><%= link_to  new_customer_path, class: 'btn btn-success' do %><i class="glyphicon glyphicon-plus"></i><span class='hidden-xs'> 新增客户</span><% end %></span>
+</div>
+</div>
+  </div>
 
-<table class="table table-hover table-condensed table-responsive">
+<div class="row">
+<table class="table table-hover table-condensed">
   <thead>
     <tr>
       <th>姓名</th>
@@ -16,35 +22,29 @@
 
   <tbody>
     <% @customers.each do |customer| %>
-      <% if customer.user_activities.empty? %>
-
-        <tr>
-        <% else %>
-
-          <tr>
-          <% end %>
-          <td><%= link_to customer do %>
+      <tr>
+        <td><%= link_to customer do %>
             <%if customer.is_member %>
               <i class="glyphicon glyphicon-star"></i>
             <%else%>
               <i class="glyphicon glyphicon-star-empty"></i>
             <%end%>
               <%=customer.name%> <% end %></td>
-          <td class="hidden-xs"><%= customer.nick_name %></td>
-          <td><%= customer.mobile_number%></td>
-          <td class="hidden-xs"><%= customer.weixin_id%></td>
-          <td><%= customer.balance%></td>
+        <td class="hidden-xs"><%= customer.nick_name %></td>
+        <td><%= customer.mobile_number%></td>
+        <td class="hidden-xs"><%= customer.weixin_id%></td>
+        <td><%= customer.balance%></td>
 
-          <td class="hidden-xs"><%= link_to new_user_activity_path(customer_id: customer.id,act_type:0) , class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-user"></i>充值<% end %></td>
-          <td class="hidden-xs"><%= link_to  new_user_activity_path(customer_id: customer.id,act_type:2 ), class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-glass"></i>现金消费<% end %></td>
+        <td class="hidden-xs"><%= link_to new_user_activity_path(customer_id: customer.id,act_type:0) , class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-user"></i>充值<% end %></td>
+        <td class="hidden-xs"><%= link_to  new_user_activity_path(customer_id: customer.id,act_type:2 ), class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-glass"></i>现金消费<% end %></td>
           <% if customer.is_member %>
 
-            <td class="hidden-xs"><%= link_to  new_user_activity_path(customer_id: customer.id,act_type:1 ), class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-credit-card"></i>会员消费<% end %></td>
+        <td class="hidden-xs"><%= link_to  new_user_activity_path(customer_id: customer.id,act_type:1 ), class: 'btn btn-sm' do %> <i class="glyphicon glyphicon-credit-card"></i>会员消费<% end %></td>
           <% else %>
 
-            <td class="hidden-xs"><%= link_to customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm'   do %> <i class="glyphicon glyphicon-trash"></i>删除客户<% end if customer.user_activities.empty?%></td>
+          <td class="hidden-xs"><%= link_to customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm'   do %> <i class="glyphicon glyphicon-trash"></i>删除客户<% end if customer.user_activities.empty?%></td>
           <% end %>
-          </tr>
+      </tr>
         <% end %>
   </tbody>
 </table>
