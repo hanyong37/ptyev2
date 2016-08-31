@@ -3,7 +3,7 @@
   <% if @customer.errors.any? %>
     <div class='row'>
       <div id="error_explanation" class='col-xs-12'>
-        <h2 class="text-danger"><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+        <h2 class="text-danger">保存失败：<%= pluralize(@customer.errors.count, "error") %>h2>
 
         <ul>
           <% @customer.errors.full_messages.each do |message| %>
@@ -59,8 +59,8 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "保存", class: "btn btn-success" %>
-      <%= link_to '返回', customers_path , class: "btn btn-default" %>
+      <%= f.submit "保存", class: "btn btn-success btn-sm" %>
+      <%= link_to '返回', :back , class: "btn btn-default btn-sm" %>
     </div>
  </div>
 <% end %>

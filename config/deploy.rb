@@ -111,8 +111,8 @@ task :deploy => :environment do
       # TODO：有问题，目录重新link过，所以需要关掉重新来:
       #queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
       #queue "cat /var/www/ptyev2/tmp/puma.pid | xargs kill -s TERM"
-      #queue 'export RAILS_ENV="production"'
-      #queue 'bundle exec puma -e production -C config/puma.rb'
+      #queue %[cd #{deploy_to}/#{current_path}]
+      #queue 'RAILS_ENV=production bundle exec puma -C config/puma.rb'
     end
   end
 end

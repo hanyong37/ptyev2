@@ -1,40 +1,45 @@
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p class="text-warn">只有草稿状态才能编辑产品明细，发布后的菜单无法修改，这样才能保存会员消费的历史记录,点击版本号编辑或者查看；</p>
+      <span class="pull-right"><%= link_to  versions_publish_path,data: { confirm: '请确认发布新版本菜单！' },  class: 'btn btn-success' do %><i class="glyphicon glyphicon-arrow-up"></i><span class='hidden-xs'> 发布新版本</span><% end %></span>
+    </div>
+  </div>
+</div>
 
-
-<p>只有草稿状态才能编辑产品明细，发布后的菜单无法修改，这样才能保存会员消费的历史记录,点击版本号编辑或者查看；</p>
-
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>版本号</th>
-      <th class="hidden-xs">描述</th>
-      <th>状态</th>
-      <th>启用时间</th>
-      <th>停用时间</th>
-    </tr>
-  </thead>
-
+<div class="row">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>版本号</th>
+        <th class="hidden-xs">描述</th>
+        <th>状态</th>
+        <th>启用时间</th>
+        <th>停用时间</th>
+      </tr>
+    </thead>
+</div>
+<div class="row">
   <tbody>
     <% @versions.each do |version| %>
       <tr>
         <% if version.status == 0%>
-        <td><%=link_to edit_version_path(version) do %>
-         版本<%=version.id%> <i class="glyphicon glyphicon-edit"></i><%end%></td>
+          <td><%=link_to edit_version_path(version) do %>
+            版本<%=version.id%> <i class="glyphicon glyphicon-edit"></i><%end%></td>
       <%else%>
         <td><%= link_to  version do %>
-         版本<%=version.id%> <i class="glyphicon glyphicon-zoom-in"></i><%end%></td>
+          版本<%=version.id%> <i class="glyphicon glyphicon-zoom-in"></i><%end%></td>
 
-      <%end%>
-        <td class="hidden-xs"><%= version.description %></td>
-        <td><%= version.status_name%></td>
-        <td><%= version.validate_from.localtime.strftime("%Y/%m/%d %R") if version.validate_from !=nil%></td>
-        <td><%= version.validate_to.localtime.strftime("%Y/%m/%d %R") if version.validate_to !=nil%></td>
-        <td>
-      </td>
+    <%end%>
+    <td class="hidden-xs"><%= version.description %></td>
+    <td><%= version.status_name%></td>
+    <td><%= version.validate_from.localtime.strftime("%Y/%m/%d %R") if version.validate_from !=nil%></td>
+    <td><%= version.validate_to.localtime.strftime("%Y/%m/%d %R") if version.validate_to !=nil%></td>
+    <td>
+    </td>
       </tr>
     <% end %>
   </tbody>
-</table>
+  </table>
+</div>
 
-<br>
-
-        <%= link_to '发布新版本' ,versions_publish_path, data: { confirm: '请确认发布新版本菜单！' } %>

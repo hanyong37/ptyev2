@@ -2,13 +2,13 @@
   <div class="col-xs-6">
     <p>
     <strong>名字:</strong>
-    <%= collection_select :customer, :id, Customer.all,:id,:name,{},{:onchange => "window.location='"+root_path+"customers/'+this.value"}%>
+    <%= collection_select :customer, :id, Customer.all,:id,:name,{:onchange => "window.location='"+root_path+"customers/'+this.value"},{class: 'select'}%>
     </p>
     <p>
     <strong>手机号:</strong>
     <%= @customer.mobile_number %>
     </p>
-    <p>
+    <p class="hidden-xs">
     <strong>微信号:</strong>
     <%= @customer.weixin_id%>
     </p>
@@ -31,35 +31,33 @@
     <strong>加入日期:</strong>
     <%= @customer.created_at.localtime.strftime("%Y/%m/%d") %>
     </p>
-
-    <p>
+    <p class="hidden-xs">
     <strong>备注:</strong>
     <%= @customer.description %>
     </p>
-
-  </div>
 </div>
 
 <div class="row">
   <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
- <%= link_to '编辑会员', edit_customer_path(@customer) , class: 'btn btn-warning btn-sm btn-block'   %>
+ <%= link_to edit_customer_path(@customer) , class: 'btn btn-default btn-sm btn-block' do %><i class="glyphicon glyphicon-edit"></i> 编辑会员<% end %>
+
   </div>
   <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
-    <%= link_to '返回会员列表', customers_path , class: 'btn btn-info btn-sm btn-block'  %>
+    <%= link_to customers_path, class: 'btn btn-default btn-sm btn-block' do %><i class="glyphicon glyphicon-list-alt"></i> 会员列表<% end %>
   </div>
   <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
-<%= link_to '打印客户报告',report_customer_path(@customer) , class: 'btn btn-info btn-sm btn-block'  , :target => "_blank"  %>
+<%= link_to report_customer_path(@customer) , class: 'btn btn-default btn-sm btn-block'  , :target => "_blank" do %><i class="glyphicon glyphicon-print"></i> 打印账单<% end %>
   </div>
   <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
-<%= link_to new_user_activity_path(act_type: 0,customer_id: @customer.id), class: 'btn btn-success btn-sm btn-block'  do %> <i class="glyphicon glyphicon-plus"></i> 充值<% end %>
+<%= link_to new_user_activity_path(act_type: 0,customer_id: @customer.id), class: 'btn btn-success btn-sm btn-block' do %><i class="glyphicon glyphicon-plus"></i> 充值<% end %>
+  </div>
+  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
+<%= link_to  new_user_activity_path(act_type: 2,customer_id: @customer.id), class: 'btn btn-success btn-sm btn-block' do %> <i class="glyphicon glyphicon-plus"></i> 非会员消费<% end %>
   </div>
   <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
 <% if @customer.is_member  %>
   <%= link_to  new_user_activity_path(act_type: 1,customer_id: @customer.id), class: 'btn btn-success btn-sm btn-block' do %> <i class="glyphicon glyphicon-plus"></i> 会员消费<% end %>
 <% end%>
-  </div>
-  <div class="col-xs-6 col-sm-2" style="margin-bottom:5;">
-<%= link_to  new_user_activity_path(act_type: 2,customer_id: @customer.id), class: 'btn btn-success btn-sm btn-block' do %> <i class="glyphicon glyphicon-plus"></i> 非会员消费<% end %>
   </div>
 </div>
 
