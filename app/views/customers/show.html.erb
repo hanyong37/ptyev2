@@ -2,7 +2,7 @@
   <div class="col-xs-6">
     <p>
     <strong>名字:</strong>
-    <%= collection_select :customer, :id, Customer.all,:id,:name,{:onchange => "window.location='"+root_path+"customers/'+this.value"},{class: 'select'}%>
+    <%= collection_select :customer, :id, Customer.all,:id,:name,{},{onchange: "window.location='"+root_path+"customers/'+this.value", class: 'select'}%>
     </p>
     <p>
     <strong>手机号:</strong>
