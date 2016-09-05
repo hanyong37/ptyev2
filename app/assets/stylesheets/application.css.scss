@@ -1,5 +1,8 @@
 // Example using 'United' bootswatch
 
+//$web-font-path ''
+//@import "fonts.yeti.offline"
+
 //Import bootstrap-sprockets
 @import "bootstrap-sprockets";
 
@@ -7,7 +10,7 @@
 //$textColor: #000;
 
 // Import flatly variables
-@import "bootswatch/flatly/variables";
+@import "bootswatch/Cerulean/variables";
 
 // Then bootstrap itself
 @import "bootstrap";
@@ -16,7 +19,7 @@
 body { padding-top: 70px; }
 
 // And finally bootswatch style itself
-@import "bootswatch/flatly/bootswatch";
+@import "bootswatch/Cerulean/bootswatch";
 
 // Whatever application styles you have go last
 //@import "scaffolds";
