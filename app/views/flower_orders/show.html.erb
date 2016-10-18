@@ -2,12 +2,12 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @flower_order.customer_id %>
+  <%= @flower_order.customer.name%>
 </p>
 
 <p>
   <strong>Flower product:</strong>
-  <%= @flower_order.flower_product_id %>
+<%= @flower_order.flower_product.name%>
 </p>
 
 <p>
@@ -15,6 +15,14 @@
   <%= @flower_order.amount %>
 </p>
 
+<p>
+  <strong>总送货次数:</strong>
+  <%= @flower_order.total_ships %>
+</p>
+<p>
+  <strong>剩余送货次数:</strong>
+  <%= @flower_order.remaining_ships %>
+</p>
 <p>
   <strong>Discount:</strong>
   <%= @flower_order.discount %>

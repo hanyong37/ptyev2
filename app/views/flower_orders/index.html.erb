@@ -8,7 +8,7 @@
       <th>Customer</th>
       <th>Flower product</th>
       <th>Amount</th>
-      <th>Discount</th>
+      <th>Remaining/Total Ships</th>
       <th>Total price</th>
       <th>Ship address</th>
       <th>Ship mobile</th>
@@ -22,10 +22,10 @@
   <tbody>
     <% @flower_orders.each do |flower_order| %>
       <tr>
-        <td><%= flower_order.customer_id %></td>
-        <td><%= flower_order.flower_product_id %></td>
+        <td><%= flower_order.customer.name %></td>
+        <td><%= flower_order.flower_product.name %></td>
         <td><%= flower_order.amount %></td>
-        <td><%= flower_order.discount %></td>
+        <td><%= flower_order.remaining_ships %> / <%=flower_order.total_ships%></td>
         <td><%= flower_order.total_price %></td>
         <td><%= flower_order.ship_address %></td>
         <td><%= flower_order.ship_mobile %></td>

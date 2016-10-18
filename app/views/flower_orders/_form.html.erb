@@ -5,13 +5,10 @@
     <%= f.association :customer %>
     <%= f.association :flower_product %>
     <%= f.input :amount %>
-    <%= f.input :discount %>
-    <%= f.input :total_price %>
-    <%= f.input :ship_address %>
+    <%= f.input :ship_address , hint: '请输入送货地址' %>
     <%= f.input :ship_mobile %>
-    <%= f.input :bonus %>
-    <%= f.input :validate_from %>
-    <%= f.input :validate_to %>
+    <%= f.input :discount  %>
+    <%= f.input :bonus  %>
   </div>
 
   <div class="form-actions">

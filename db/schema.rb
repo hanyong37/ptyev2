@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018191138) do
+ActiveRecord::Schema.define(version: 20161018214935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,16 +45,16 @@ ActiveRecord::Schema.define(version: 20161018191138) do
   create_table "flower_orders", force: :cascade do |t|
     t.integer  "customer_id"
     t.integer  "flower_product_id"
-    t.integer  "amount"
-    t.decimal  "discount"
+    t.integer  "amount",            default: 1
+    t.decimal  "discount",          default: 0.0
     t.decimal  "total_price"
     t.text     "ship_address"
     t.string   "ship_mobile"
-    t.integer  "bonus"
+    t.integer  "bonus",             default: 0
     t.date     "validate_from"
     t.date     "validate_to"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "flower_products", force: :cascade do |t|
