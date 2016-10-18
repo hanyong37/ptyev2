@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @flower_product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @flower_product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @flower_product.price %>
+</p>
+
+<p>
+  <strong>Cycle:</strong>
+  <%= @flower_product.cycle %>
+</p>
+
+<%= link_to 'Edit', edit_flower_product_path(@flower_product) %> |
+<%= link_to 'Back', flower_products_path %>

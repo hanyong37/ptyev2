@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
-  has_many :user_activities
+  has_many :user_activities,  dependent: :restrict_with_error
+ has_many :flower_orders, dependent: :restrict_with_error
   default_scope {order('name asc')}
  #todo: 按照客户消费次数排序
   validates :name,presence: true

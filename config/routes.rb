@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :flower_ships
+  resources :flower_orders
+  resources :flower_products
+  resources :flower_products
   get '/versions/publish' => 'versions#publish'
   resources :versions
   resources :catagories

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  flower_order_id: 1
+  memo: MyText
+  recieved_date: 2016-10-19
+
+two:
+  flower_order_id: 1
+  memo: MyText
+  recieved_date: 2016-10-19
