@@ -1,0 +1,20 @@
+<%= simple_form_for(@flower_order) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :customer %>
+    <%= f.association :flower_product %>
+    <%= f.input :amount %>
+    <%= f.input :discount %>
+    <%= f.input :total_price %>
+    <%= f.input :ship_address %>
+    <%= f.input :ship_mobile %>
+    <%= f.input :bonus %>
+    <%= f.input :validate_from %>
+    <%= f.input :validate_to %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

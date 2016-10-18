@@ -1,0 +1,13 @@
+<%= simple_form_for(@flower_ship) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :flower_order %>
+    <%= f.input :memo %>
+    <%= f.input :recieved_date %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Flower order:</strong>
+  <%= @flower_ship.flower_order_id %>
+</p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @flower_ship.memo %>
+</p>
+
+<p>
+  <strong>Recieved date:</strong>
+  <%= @flower_ship.recieved_date %>
+</p>
+
+<%= link_to 'Edit', edit_flower_ship_path(@flower_ship) %> |
+<%= link_to 'Back', flower_ships_path %>

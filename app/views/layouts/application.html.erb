@@ -35,7 +35,7 @@
               <li class=<%= 'active' if request.url.match('customer') %>>
                 <%= link_to "客户管理", customers_path %>
               </li>
-              <li class=<%= 'active' if request.url.match('version') || request.url.match('product') %>>
+              <li class=<%= 'active' if request.url.match('version') || request.url.match('^product') %>>
                 <%= link_to "菜单管理", versions_path %>
               </li>
               <li class=<%= 'active' if request.url.match('catagor') %>>
@@ -43,6 +43,15 @@
               </li>
               <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
                 <%= link_to "经营报告", reports_ua_report_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(flower_products_path) %>>
+                <%= link_to "石榴花园产品", flower_products_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(flower_orders_path) %>>
+                <%= link_to "石榴花园订单", flower_orders_path %>
+              </li>
+              <li class=<%= 'active' if current_page?(flower_ships_path) %>>
+                <%= link_to "石榴花园送货", flower_ships_path %>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->

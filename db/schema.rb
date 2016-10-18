@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423155430) do
+ActiveRecord::Schema.define(version: 20161018191138) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +42,45 @@ ActiveRecord::Schema.define(version: 20160423155430) do
     t.boolean  "is_member"
   end
 
+  create_table "flower_orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "flower_product_id"
+    t.integer  "amount"
+    t.decimal  "discount"
+    t.decimal  "total_price"
+    t.text     "ship_address"
+    t.string   "ship_mobile"
+    t.integer  "bonus"
+    t.date     "validate_from"
+    t.date     "validate_to"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "flower_products", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price"
+    t.integer  "cycle"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "flower_ships", force: :cascade do |t|
+    t.integer  "flower_order_id"
+    t.text     "memo"
+    t.date     "recieved_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "prodoct_catagories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price"
@@ -49,11 +91,11 @@ ActiveRecord::Schema.define(version: 20160423155430) do
     t.string   "unit"
     t.integer  "version_id"
     t.boolean  "isNew",       default: false
-    t.boolean  "isHot"
+    t.boolean  "isHot",       default: false
   end
 
-  add_index "products", ["catagory_id"], name: "index_products_on_catagory_id"
-  add_index "products", ["version_id"], name: "index_products_on_version_id"
+  add_index "products", ["catagory_id"], name: "index_products_on_catagory_id", using: :btree
+  add_index "products", ["version_id"], name: "index_products_on_version_id", using: :btree
 
   create_table "user_activities", force: :cascade do |t|
     t.integer  "customer_id"
@@ -69,8 +111,8 @@ ActiveRecord::Schema.define(version: 20160423155430) do
     t.integer  "count"
   end
 
-  add_index "user_activities", ["customer_id"], name: "index_user_activities_on_customer_id"
-  add_index "user_activities", ["product_id"], name: "index_user_activities_on_product_id"
+  add_index "user_activities", ["customer_id"], name: "index_user_activities_on_customer_id", using: :btree
+  add_index "user_activities", ["product_id"], name: "index_user_activities_on_product_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.datetime "validate_from"
