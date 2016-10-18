@@ -22,11 +22,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-              <a class="navbar-brand" href="<%=root_path%>">
-                🍇   葡萄院儿
-                <!--
+            <a class="navbar-brand" href="<%=root_path%>">
+              🍇   葡萄院儿
+              <!--
                 <img alt="The Vineyard" style="width: 80px; height: 80px;" src="<%=asset_path('ptye_logo.jpg') %>"-->
-      </a>
+            </a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div id="nav-memu" class="collapse navbar-collapse" >
@@ -44,15 +44,22 @@
               <li class=<%= 'active' if current_page?(reports_ua_report_path) %>>
                 <%= link_to "经营报告", reports_ua_report_path %>
               </li>
-              <li class=<%= 'active' if current_page?(flower_products_path) %>>
-                <%= link_to "石榴花园产品", flower_products_path %>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">石榴花园 <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <%= link_to "石榴花园产品", flower_products_path %>
+                  </li>
+                  <li>
+                    <%= link_to "石榴花园订单", flower_orders_path %>
+                  </li>
+                  <li>
+                    <%= link_to "石榴花园送货", flower_ships_path %>
+                  </li>
+                </ul>
               </li>
-              <li class=<%= 'active' if current_page?(flower_orders_path) %>>
-                <%= link_to "石榴花园订单", flower_orders_path %>
-              </li>
-              <li class=<%= 'active' if current_page?(flower_ships_path) %>>
-                <%= link_to "石榴花园送货", flower_ships_path %>
-              </li>
+
             </ul>
           </div><!-- /.navbar-collapse -->
         </div>
