@@ -15,7 +15,8 @@ class FlowerOrder < ActiveRecord::Base
   end
 
   def total_ships
-    ((self.validate_from...self.validate_to).to_a.select {|k| self.validate_from.wday == k.wday}).count + (self.bonus || 0)
+    self.amount * self.flower_product.cycle + bonus
+    #((self.validate_from...self.validate_to).to_a.select {|k| self.validate_from.wday == k.wday}).count + (self.bonus || 0)
   end
 
   private
