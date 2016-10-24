@@ -2,6 +2,14 @@
 
 <h1>Listing Flower Orders</h1>
 
+<p> 本周送货清单</p >
+<ul>
+  <% todo = []
+  FlowerProduct.all.each{ |prd| todo << {prd.name => FlowerOrder.where(:flower_product_id => prd.id).size} }
+todo.each do |td|%>
+<li><%=td%></li>
+<%end%>
+</ul>
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
