@@ -1,4 +1,5 @@
 class FlowerOrder < ActiveRecord::Base
+  default_scope {order(:flower_product_id)}
   validates :customer_id, :flower_product_id, :ship_address, :amount, presence: :true
   belongs_to :customer
   belongs_to :flower_product
