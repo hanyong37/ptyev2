@@ -74,6 +74,17 @@
         </div>
       </div>
     </div>
+
+<% if content_for?(:page_modal) %>
+  <div id = "create_modal">
+  <%= yield(:page_modal) %>
+  <div>
+<% end %>
+<%= yield(:page_javascript) if content_for?(:page_javascript) %>
+
+  </body>
+</html>
+
   </body>
 </html>
 

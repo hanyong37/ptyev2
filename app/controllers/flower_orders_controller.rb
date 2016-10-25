@@ -5,6 +5,7 @@ class FlowerOrdersController < ApplicationController
   # GET /flower_orders.json
   def index
     @flower_orders = FlowerOrder.all
+    @flower_ship = FlowerShip.new
   end
 
   # GET /flower_orders/1

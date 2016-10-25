@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<h3>Listing Flower Orders</h3>
+<h3>石榴花园订单</h3>
 
 <p> 本周送货清单</p >
 <ul>
   <% todo = []
   FlowerProduct.all.each{ |prd| todo << {prd.name => FlowerOrder.where(:flower_product_id => prd.id).size} }
-todo.each do |td|%>
-<li><%=td%></li>
-<%end%>
+  todo.each {|td| %>
+  <li><%=td.to_s %></li>
+<% }%>
 </ul>
 
 <table class="table table-hover table-condensed">
@@ -21,10 +19,9 @@ todo.each do |td|%>
       <th class="hidden-xs">价格</th>
       <th>收货地址</th>
       <th>收货手机</th>
-      <th class="hidden-xs">Bonus</th>
-      <th class="hidden-xs">Validate from</th>
-      <th class="hidden-xs">Validate to</th>
-      <th colspan="3">操作</th>
+      <th>上次送货时间</th>
+      <th class="hidden-xs">奖励次数</th>
+      <th >操作</th>
     </tr>
   </thead>
 
@@ -38,12 +35,15 @@ todo.each do |td|%>
         <td class="hidden-xs"><%= flower_order.total_price %></td>
         <td><%= flower_order.ship_address %></td>
         <td><%= flower_order.ship_mobile %></td>
+        <td><%= flower_order.last_ship_date %></td>
         <td class="hidden-xs"><%= flower_order.bonus %></td>
-        <td class="hidden-xs"><%= flower_order.validate_from %></td>
-        <td class="hidden-xs"><%= flower_order.validate_to %></td>
-        <td><%= link_to 'Show', flower_order %>
-        <%= link_to 'Edit', edit_flower_order_path(flower_order) %>
-        <%= link_to 'Destroy', flower_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '查看', flower_order %>
+        <%= link_to '编辑', edit_flower_order_path(flower_order) %>
+        <%= link_to '删除', flower_order, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <!-- Button trigger modal -->
+        <button id="<%=flower_order.id%>" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#newShip"> 送货
+        </button>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -52,3 +52,36 @@ todo.each do |td|%>
 <br>
 
 <%= link_to '新订单', new_flower_order_path %>
+
+<%= content_for :page_modal do %>
+  <!-- Modal -->
+  <div class="modal fade" id="newShip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">新增送货记录</h4>
+        </div>
+        <%= simple_form_for @flower_ship do |f| %>
+          <div class="modal-body">
+            <%= f.association :flower_order%>
+            <%= f.input :memo %>
+            <%= f.input :recieved_date %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.button :submit, :class => 'btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :page_javascript do %>
+  <script>
+$(".btn-success").click(function(){
+  $("#flower_ship_flower_order_id").val($(this).attr("id"));
+});
+  </script>
+<% end %>

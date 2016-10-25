@@ -20,6 +20,10 @@ class FlowerOrder < ActiveRecord::Base
     #((self.validate_from...self.validate_to).to_a.select {|k| self.validate_from.wday == k.wday}).count + (self.bonus || 0)
   end
 
+  def last_ship_date
+    !self.flower_ships.blank? && self.flower_ships.order(created_at: :desc).first.created_at.to_date.to_s
+  end
+
   private
   def caculate_price_and_dates
     self.total_price = self.flower_product.price * self.amount * self.discount

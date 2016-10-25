@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  root 'customers#index'
+
   resources :flower_ships
-  resources :flower_orders
-  resources :flower_products
+  resources :flower_orders do
+    resources :deliver, only:[:create, :destroy]
+  end
   resources :flower_products
   get '/versions/publish' => 'versions#publish'
   resources :versions
@@ -70,5 +73,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root 'customers#index'
 end

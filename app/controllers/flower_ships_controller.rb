@@ -28,7 +28,7 @@ class FlowerShipsController < ApplicationController
 
     respond_to do |format|
       if @flower_ship.save
-        format.html { redirect_to @flower_ship, notice: 'Flower ship was successfully created.' }
+        format.html { redirect_to flower_orders_path, notice: 'Flower ship was successfully created.' }
         format.json { render :show, status: :created, location: @flower_ship }
       else
         format.html { render :new }
