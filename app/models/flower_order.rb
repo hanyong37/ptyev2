@@ -21,7 +21,7 @@ class FlowerOrder < ActiveRecord::Base
   end
 
   def last_ship_date
-    !self.flower_ships.blank? && self.flower_ships.order(created_at: :desc).first.created_at.to_date.to_s
+    !self.flower_ships.blank? && self.flower_ships.order(recieved_date: :desc).first.recieved_date.to_s
   end
 
   private
