@@ -1,62 +1,70 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @flower_order.customer.name%>
-</p>
+<div class="row">
+  <div class="col-xs-6">
 
-<p>
-  <strong>Flower product:</strong>
-<%= @flower_order.flower_product.name%>
-</p>
+    <p>
+    <strong>客户:</strong>
+    <%= @flower_order.customer.name%>
+    </p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @flower_order.amount %>
-</p>
+    <p>
+    <strong>订购数量:</strong>
+    <%= @flower_order.amount %>
+    </p>
 
-<p>
-  <strong>总送货次数:</strong>
-  <%= @flower_order.total_ships %>
-</p>
-<p>
-  <strong>剩余送货次数:</strong>
-  <%= @flower_order.remaining_ships %>
-</p>
-<p>
-  <strong>Discount:</strong>
-  <%= @flower_order.discount %>
-</p>
+    <p>
+    <strong>总送货次数:</strong>
+    <%= @flower_order.total_ships %>
+    </p>
+    <p>
+    <strong>剩余送货次数:</strong>
+    <%= @flower_order.remaining_ships %>
+    </p>
+  </div>
+  <div class="col-xs-6">
 
-<p>
-  <strong>Total price:</strong>
-  <%= @flower_order.total_price %>
-</p>
+    <p>
+    <strong>产品:</strong>
+    <%= @flower_order.flower_product.name%>
+    </p>
+    <p>
+    <strong>送货地址:</strong>
+    <%= @flower_order.ship_address %>
+    </p>
 
-<p>
-  <strong>Ship address:</strong>
-  <%= @flower_order.ship_address %>
-</p>
+    <p>
+    <strong>联系手机:</strong>
+    <%= @flower_order.ship_mobile %>
+    </p>
 
-<p>
-  <strong>Ship mobile:</strong>
-  <%= @flower_order.ship_mobile %>
-</p>
+    <p>
+    <strong>订单日期</strong>
+    <%= @flower_order.validate_from %>
+    </p>
 
-<p>
-  <strong>Bonus:</strong>
-  <%= @flower_order.bonus %>
-</p>
 
-<p>
-  <strong>Validate from:</strong>
-  <%= @flower_order.validate_from %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Validate to:</strong>
-  <%= @flower_order.validate_to %>
-</p>
+<div class='row'>
 
+  <table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th class='col-xs-4 text-center'>送货时间：</th>
+      <th class='col-xs-8 text-center'>备注：</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flower_ships.each do |flower_ship| %>
+      <tr>
+        <td><%= flower_ship.recieved_date %></td>
+        <td><%= flower_ship.memo %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 <%= link_to 'Edit', edit_flower_order_path(@flower_order) %> |
 <%= link_to 'Back', flower_orders_path %>

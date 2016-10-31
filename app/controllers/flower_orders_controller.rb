@@ -11,6 +11,7 @@ class FlowerOrdersController < ApplicationController
   # GET /flower_orders/1
   # GET /flower_orders/1.json
   def show
+    @flower_ships = FlowerShip.where(flower_order_id: @flower_order.id)
   end
 
   # GET /flower_orders/new

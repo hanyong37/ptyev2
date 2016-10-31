@@ -1,5 +1,5 @@
 class FlowerOrder < ActiveRecord::Base
-  default_scope {order(:flower_product_id)}
+  default_scope {order(:customer_id, :flower_product_id)}
   validates :customer_id, :flower_product_id, :ship_address, :amount, presence: :true
   belongs_to :customer
   belongs_to :flower_product
@@ -21,7 +21,7 @@ class FlowerOrder < ActiveRecord::Base
   end
 
   def last_ship_date
-    !self.flower_ships.blank? && self.flower_ships.order(recieved_date: :desc).first.recieved_date.to_s
+    !self.flower_ships.blank? && self.flower_ships.order(recieved_date: :desc).first.recieved_date.strftime("%m-%d")
   end
 
   private

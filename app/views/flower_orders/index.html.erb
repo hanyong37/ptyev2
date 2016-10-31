@@ -1,6 +1,6 @@
 <h3>石榴花园订单</h3>
 
-<p> 本周送货清单</p >
+<p> 本周备货清单：</p >
 <ul>
   <% todo = []
   FlowerProduct.all.each{ |prd| todo << {prd.name => FlowerOrder.where(:flower_product_id => prd.id).size} }
@@ -18,7 +18,7 @@
       <th>次数</th>
       <th class="hidden-xs">价格</th>
       <th>收货地址</th>
-      <th>收货手机</th>
+      <th class="hidden-xs">收货手机</th>
       <th>上次送货时间</th>
       <th class="hidden-xs">奖励次数</th>
       <th >操作</th>
@@ -28,16 +28,16 @@
   <tbody>
     <% @flower_orders.each do |flower_order| %>
       <tr>
-        <td><%= flower_order.customer.name %></td>
-        <td><%= flower_order.flower_product.name %></td>
+        <td class="col-xs-2"><p><%= flower_order.customer.name %></p></td>
+        <td class='col-xs-2'><%= flower_order.flower_product.short_name %></td>
         <td class="hidden-xs"><%= flower_order.amount %></td>
-        <td><%= flower_order.remaining_ships %> / <%=flower_order.total_ships%></td>
+        <td class='col-xs-2'><%= flower_order.remaining_ships %> / <%=flower_order.total_ships%></td>
         <td class="hidden-xs"><%= flower_order.total_price %></td>
-        <td><%= flower_order.ship_address %></td>
-        <td><%= flower_order.ship_mobile %></td>
-        <td><%= flower_order.last_ship_date %></td>
+        <td class='col-xs-2'><%= flower_order.ship_address %></td>
+        <td class="hidden-xs"><%= flower_order.ship_mobile %></td>
+        <td class='col-xs-2'><%= flower_order.last_ship_date %></td>
         <td class="hidden-xs"><%= flower_order.bonus %></td>
-        <td><%= link_to '查看', flower_order %>
+        <td class='col-xs-2'><%= link_to '查看', flower_order %>
         <%= link_to '编辑', edit_flower_order_path(flower_order) %>
         <%= link_to '删除', flower_order, method: :delete, data: { confirm: 'Are you sure?' } %>
         <!-- Button trigger modal -->

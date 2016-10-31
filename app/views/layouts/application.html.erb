@@ -1,5 +1,4 @@
 <!-- app/views/layouts/application.html.erb -->
-
 <!DOCTYPE html lang="zh-CN">
 <html>
   <head>
@@ -66,12 +65,10 @@
       </nav>
 
       <div id="content-container" class="row-fluid">
-        <div class="container">
           <% flash.each do |name, msg| -%>
             <%= content_tag :div, msg, class: "text-info alert alert-#{name}" %>
           <% end -%>
           <%= yield %>
-        </div>
       </div>
     </div>
 
@@ -80,6 +77,7 @@
   <%= yield(:page_modal) %>
   <div>
 <% end %>
+
 <%= yield(:page_javascript) if content_for?(:page_javascript) %>
 
   </body>

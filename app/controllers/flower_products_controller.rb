@@ -73,6 +73,6 @@ class FlowerProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def flower_product_params
-    params.require(:flower_product).permit(:name, :description, :price, :cycle)
+    params.require(:flower_product).permit(:name, :description, :price, :cycle, :short_name)
   end
 end
