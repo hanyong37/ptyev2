@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031041720) do
+ActiveRecord::Schema.define(version: 20161111044849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 20161031041720) do
     t.datetime "updated_at",                      null: false
   end
 
+  add_index "flower_orders", ["customer_id"], name: "index_flower_orders_on_customer_id", using: :btree
+  add_index "flower_orders", ["flower_product_id"], name: "index_flower_orders_on_flower_product_id", using: :btree
+
   create_table "flower_products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -74,6 +77,8 @@ ActiveRecord::Schema.define(version: 20161031041720) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "flower_ships", ["flower_order_id"], name: "index_flower_ships_on_flower_order_id", using: :btree
 
   create_table "prodoct_catagories", force: :cascade do |t|
     t.string   "name"

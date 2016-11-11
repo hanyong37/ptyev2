@@ -15,7 +15,7 @@
   <tbody>
     <% @flower_ships.each do |flower_ship| %>
       <tr>
-        <td><%= flower_ship.flower_order_id %></td>
+        <td><%= flower_ship.flower_order_id %>_<%= flower_ship.flower_order.customer.name %>_<%= flower_ship.flower_order.flower_product.short_name %></td>
         <td><%= flower_ship.memo %></td>
         <td><%= flower_ship.recieved_date %></td>
         <td><%= link_to 'Show', flower_ship %></td>
