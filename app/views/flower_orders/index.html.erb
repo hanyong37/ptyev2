@@ -3,7 +3,7 @@
 <p> 本周备货清单：</p >
 <ul>
   <% todo = []
-  FlowerProduct.all.each{ |prd| todo << {prd.name => prd.flower_orders.inject(0){|sum, o| sum+1 if o.remaining_ships > 0}}}
+  FlowerProduct.all.each{ |prd| todo << {prd.name => prd.flower_orders.inject(0){|sum, o| sum+1 if o.remaining_ships > 0} }if prd.flower_orders.size > 0}
   todo.each {|td| %>
   <li><%=td.to_s %></li>
 <% }%>
