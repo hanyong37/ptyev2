@@ -4,7 +4,7 @@ class FlowerOrdersController < ApplicationController
   # GET /flower_orders
   # GET /flower_orders.json
   def index
-    @flower_orders = FlowerOrder.all
+    @flower_orders = FlowerOrder.all.unscoped.order(id: :desc)
     @flower_ship = FlowerShip.new
   end
 

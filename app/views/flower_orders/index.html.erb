@@ -12,6 +12,7 @@
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
+      <th>订单号</th>
       <th>客户</th>
       <th>产品</th>
       <th class="hidden-xs">订购数量</th>
@@ -28,7 +29,8 @@
   <tbody>
     <% @flower_orders.each do |flower_order| %>
       <tr>
-        <td class="col-xs-2"><p><%= flower_order.customer.name %></p></td>
+        <td class="col-xs-1"><p><%= flower_order.id %></p></td>
+        <td class="col-xs-1"><p><%= flower_order.customer.name %></p></td>
         <td class='col-xs-2'><%= flower_order.flower_product.short_name %></td>
         <td class="hidden-xs"><%= flower_order.amount %></td>
         <td class='col-xs-2'><%= flower_order.remaining_ships %> / <%=flower_order.total_ships%></td>
@@ -37,7 +39,7 @@
         <td class="hidden-xs"><%= flower_order.ship_mobile %></td>
         <td class='col-xs-2'><%= flower_order.last_ship_date %></td>
         <td class="hidden-xs"><%= flower_order.bonus %></td>
-        <td class='col-xs-2'><%= link_to '查看', flower_order %>
+        <td class='col-xs-3'><%= link_to '查看', flower_order %>
         <%= link_to '编辑', edit_flower_order_path(flower_order) %>
         <%= link_to '删除', flower_order, method: :delete, data: { confirm: 'Are you sure?' } %>
         <!-- Button trigger modal -->
