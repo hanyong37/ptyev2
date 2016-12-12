@@ -1,9 +1,9 @@
 <h3>石榴花园订单</h3>
 
-<p> 本周备货清单：</p >
+<p> 未完成送货清单：</p >
 <ul>
   <% todo = []
-  FlowerProduct.all.each{ |prd| todo << {prd.name => FlowerOrder.where(:flower_product_id => prd.id).size} }
+  FlowerProduct.all.each{ |prd| todo << {prd.name => prd.flower_orders.inject(0){|sum, o| sum+o.remaining_ships}}}
   todo.each {|td| %>
   <li><%=td.to_s %></li>
 <% }%>
